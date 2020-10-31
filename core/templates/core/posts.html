@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'core:add' %}">Add New<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+       
+      </li>
+      
+      
+    </ul>
+    
+  </div>
+</nav>
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            {% for post in post_list %}
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <img src="https://via.placeholder.com/300x100" alt="card image cap" class="card-img-top">
+                    <div class="card-body">
+                        <h4 class="laed"><a href="{% url 'core:single' post.pk %}" class="text-dark">{{ post.title }}</a></h4>
+                        <p class="card-text"></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="{{ post.get_absolute_url }}" class="btn btn-sm btn-outline-secondary" role="button" aria-pressed="true">View</a>
+                                <a href="{% url 'core:edit' post.pk %}" class="btn btn-sm btn-outline-secondary" role="button" aria-pressed="true">Edit</a>
+                                <a href="{% url 'core:delete' post.pk %}" class="btn btn-sm btn-outline-secondary" role="button" aria-pressed="true">Delete</a>
+
+                            </div>
+                            <small class="text-muted">9 mins</small>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+            
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
