@@ -1,6 +1,7 @@
 from .models import Core
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreatView
+from django.urls import reverse_lazy
 
 
 # Create your views here.
@@ -24,3 +25,8 @@ class PostsView(ListView):
     context_object_name = 'post_list'
     
 
+class AddView(CreateView):
+    model = Core
+    template_name = "core/add.html"
+    fields = '__all__'
+    success_url = reverse_lazy('core:posts')
