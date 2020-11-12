@@ -1,6 +1,6 @@
 from .models import Core
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreatView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 
@@ -30,3 +30,21 @@ class AddView(CreateView):
     template_name = "core/add.html"
     fields = '__all__'
     success_url = reverse_lazy('core:posts')
+
+
+class EditView(UpdateView):
+
+    model = Core
+    template_name = "core/edit.html"
+    fields = '__all__'
+    pk_url_kwarg = 'pk'
+    success_url = reverse_lazy('core:posts')
+
+
+class DeleteView(DeleteView):
+    model = Core
+    pk_url_kwarg = 'pk'
+    template_name = "core/confirm-delete.html"
+    success_url = reverse_lazy('core:posts')
+    
+    
